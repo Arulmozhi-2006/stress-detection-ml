@@ -255,6 +255,9 @@ def predict_stress(user_text):
 # -------------------------------
 st.title("📉 StressSense AI")
 st.caption("Analyze stress levels from text using Machine Learning & NLP")
+st.info(
+    "⚠️ Note: Model is trained on a limited dataset and may produce imperfect results."
+)
 
 col1, col2 = st.columns(2)
 with col1:
