@@ -165,15 +165,13 @@ def clean_and_map(df):
     df['stress'] = df['label'].map(stress_map)
     df = df.dropna(subset=['stress'])
 
-    # Balance: undersample Low to reduce Low-bias (was 45% of data)
+    # Keep all classes without aggressive undersampling
     low_df  = df[df['stress'] == 'Low']
     med_df  = df[df['stress'] == 'Medium']
     high_df = df[df['stress'] == 'High']
 
-    target  = len(high_df)*2
-    low_bal = resample(low_df, n_samples=target, random_state=42, replace=False)
+    df = pd.concat([low_df, med_df, high_df]).sample(frac=1, random_state=42)
 
-    df = pd.concat([low_bal, med_df, high_df]).sample(frac=1, random_state=42)
     return df
 
 # -------------------------------
