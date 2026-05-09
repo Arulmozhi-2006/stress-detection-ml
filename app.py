@@ -244,6 +244,8 @@ def predict_stress(user_text):
         # Severe sentence wrongly predicted as calmer
         elif keyword_result == "High" and model_result in ["Low", "Medium"]:
             return "High", max_confidence
+        elif keyword_result == "Medium" and model_result in ["Low","High"]:
+            return "Medium",max_confidence
 
     # Otherwise trust ML
     return model_result, max_confidence
