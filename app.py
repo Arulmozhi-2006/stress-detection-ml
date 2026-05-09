@@ -238,7 +238,7 @@ def predict_stress(user_text):
 
     # Layer 3: Keyword override for known disagreements
     keyword_result = keyword_stress_level(user_text)
-    if model_confidence < 0.50 and keyword_result is not None:
+    if max_confidence < 0.50 and keyword_result is not None:
         if keyword_result == "Medium" and model_result == "Low":
             return "Medium", max_confidence
         elif keyword_result == "Medium" and model_result == "High":
