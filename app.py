@@ -84,7 +84,7 @@ def is_meaningful_text(text):
     if len(words) == 0:
         return False
     known_count = sum(1 for w in words if w in common_words)
-    return (known_count / len(words)) >= 0.3
+    return (known_count / len(words)) >= 0.2
 
 # -------------------------------
 # Keyword Lists
@@ -185,11 +185,12 @@ def prepare_pipeline():
 
     # Bigrams capture phrases like "a lot of work", "too much pressure"
     vectorizer = TfidfVectorizer(
-        ngram_range=(1, 2),
-        min_df=2,
-        max_df=0.95,
-        sublinear_tf=True
-    )
+    max_features=2000,
+    ngram_range=(1,1),
+    min_df=2,
+    max_df=0.95,
+    sublinear_tf=True
+)
     X = vectorizer.fit_transform(df["text"])
 
     X_train, X_test, y_train, y_test = train_test_split(
@@ -225,7 +226,7 @@ def predict_stress(user_text):
     pred_index = np.argmax(proba)
     model_result = le.inverse_transform([pred_index])[0]
 
-    if max_confidence < 0.45:
+    if max_confidence < 0.35:
         return "Unknown", max_confidence
 
     # Layer 3: Keyword override for known disagreements
