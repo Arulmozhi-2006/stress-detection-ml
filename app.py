@@ -176,7 +176,7 @@ def clean_and_map(df):
 # -------------------------------
 @st.cache_resource
 def prepare_pipeline():
-    df = pd.read_csv("train.txt", sep=';', names=['text', 'label'])
+    df = pd.read_csv("train_cleaned.txt", sep=';', names=['text', 'label'])
     df["text"] = df["text"].apply(preprocess)
     df = clean_and_map(df)
 
