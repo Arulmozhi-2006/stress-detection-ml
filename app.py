@@ -108,7 +108,12 @@ medium_stress_words = [
 low_stress_words = [
     "happy","joyful","relaxed","calm","peaceful","great",
     "wonderful","excited","love","enjoy","grateful","amazing",
-    "fantastic","content","cheerful","delighted","thrilled"
+    "fantastic","content","cheerful","delighted","thrilled","going smoothly",
+"under control",
+"stress free",
+"manageable",
+"peaceful day",
+"doing well"
 ]
 
 def keyword_stress_level(text):
@@ -165,7 +170,7 @@ def clean_and_map(df):
     med_df  = df[df['stress'] == 'Medium']
     high_df = df[df['stress'] == 'High']
 
-    target  = int(len(high_df) * 1.2)
+    target  = len(high_df)*2
     low_bal = resample(low_df, n_samples=target, random_state=42, replace=False)
 
     df = pd.concat([low_bal, med_df, high_df]).sample(frac=1, random_state=42)
@@ -198,7 +203,7 @@ def prepare_pipeline():
     )
 
     # class_weight='balanced' further corrects any remaining imbalance
-    base_model = LinearSVC(max_iter=2000, class_weight='balanced')
+    base_model = LinearSVC(max_iter=2000)
     model = CalibratedClassifierCV(base_model, cv=3)
     model.fit(X_train, y_train)
 
