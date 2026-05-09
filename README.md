@@ -103,7 +103,7 @@ fear, anger     →  High Stress
 | Metric | Score |
 |--------|-------|
 | Training Accuracy | ~96% |
-| Testing Accuracy | Displayed live in app |
+| Testing Accuracy | ~92 |
 
 > `max_features=2000` was used in TF-IDF to reduce overfitting (down from 99% train accuracy).
 
@@ -122,5 +122,5 @@ fear, anger     →  High Stress
 
 **Arulmozhi K**
 
-[![GitHub](https://img.shields.io/badge/GitHub-@yourusername-black?logo=github)](https://github.com/yourusername)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](https://linkedin.com/in/yourprofile)
+[![GitHub](https://img.shields.io/badge/GitHub-@yourusername-black?logo=github)](https://github.com/Arulmozhi-2006)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/arulmozhi-k-92b498326?utm_source=share_via&utm_content=profile&utm_medium=member_android))
