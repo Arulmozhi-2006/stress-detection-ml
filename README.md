@@ -122,4 +122,4 @@ fear, anger     →  High Stress
 
 **Arulmozhi K**
 
-[![GitHub](https://img.shields.io/badge/GitHub-@yourusername-black?logo=github)](https://github.com/Arulmozhi-2006)
+[![GitHub](https://img.shields.io/badge/GitHub-@arulmozhik-black?logo=github)](https://github.com/Arulmozhi-2006)
