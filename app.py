@@ -93,13 +93,10 @@ high_stress_words = [
     "panic","terrified","hopeless","unbearable","desperate",
     "breakdown","cannot cope","falling apart","lose my mind",
     "cant breathe","out of control","completely lost","impossible to manage",
-"cannot manage",
-"cant manage",
-"losing control",
-"breaking down",
-"out of control",
-"falling apart",
-"mentally exhausted"
+"cannot manage","cant manage","losing control","breaking down","out of control",
+"falling apart","mentally exhausted","cannot handle","cant handle","cannot take this anymore",
+"handle this pressure","cannot deal with","cant deal with","breaking down","losing my mind",
+"too overwhelmed"
 ]
 
 medium_stress_words = [
