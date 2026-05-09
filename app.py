@@ -232,18 +232,20 @@ def predict_stress(user_text):
     if max_confidence < 0.35:
         return "Unknown", max_confidence
 
-    # Layer 3: Keyword override for known disagreements
     keyword_result = keyword_stress_level(user_text)
+
+    # Allow keyword correction only when confidence is weak
     if max_confidence < 0.50 and keyword_result is not None:
-        if keyword_result == "Medium" and model_result == "Low":
-            return "Medium", max_confidence
-        elif keyword_result == "Medium" and model_result == "High":
-            return "Medium", max_confidence
-        elif keyword_result == "High" and model_result == "Low":
-            return "High", max_confidence
-        elif keyword_result == "Low" and model_result == "High":
+
+        # Calm sentence wrongly predicted as stress
+        if keyword_result == "Low" and model_result in ["Medium", "High"]:
             return "Low", max_confidence
 
+        # Severe sentence wrongly predicted as calmer
+        elif keyword_result == "High" and model_result in ["Low", "Medium"]:
+            return "High", max_confidence
+
+    # Otherwise trust ML
     return model_result, max_confidence
 
 # -------------------------------
