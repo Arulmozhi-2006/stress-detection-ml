@@ -10,7 +10,7 @@
 
 ## 🔗 Live App
 
-👉 [Try StressSense AI](#)
+👉 https://text-based-stress-level-detection.streamlit.app/
 
 ---
 
