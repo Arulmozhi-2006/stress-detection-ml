@@ -229,7 +229,7 @@ def predict_stress(user_text):
     pred_index = np.argmax(proba)
     model_result = le.inverse_transform([pred_index])[0]
 
-    if max_confidence < 0.35:
+    if max_confidence < 0.20:
         return "Unknown", max_confidence
 
     keyword_result = keyword_stress_level(user_text)
