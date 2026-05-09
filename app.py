@@ -113,11 +113,7 @@ low_stress_words = [
     "happy","joyful","relaxed","calm","peaceful","great",
     "wonderful","excited","love","enjoy","grateful","amazing",
     "fantastic","content","cheerful","delighted","thrilled","going smoothly",
-"under control",
-"stress free",
-"manageable",
-"peaceful day",
-"doing well"
+"under control","stress free","manageable","peaceful day","doing well"
 ]
 
 def keyword_stress_level(text):
