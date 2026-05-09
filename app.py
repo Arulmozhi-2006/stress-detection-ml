@@ -92,7 +92,14 @@ def is_meaningful_text(text):
 high_stress_words = [
     "panic","terrified","hopeless","unbearable","desperate",
     "breakdown","cannot cope","falling apart","lose my mind",
-    "cant breathe","out of control","completely lost"
+    "cant breathe","out of control","completely lost","impossible to manage",
+"cannot manage",
+"cant manage",
+"losing control",
+"breaking down",
+"out of control",
+"falling apart",
+"mentally exhausted"
 ]
 
 medium_stress_words = [
