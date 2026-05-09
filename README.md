@@ -123,4 +123,3 @@ fear, anger     →  High Stress
 **Arulmozhi K**
 
 [![GitHub](https://img.shields.io/badge/GitHub-@yourusername-black?logo=github)](https://github.com/Arulmozhi-2006)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/arulmozhi-k-92b498326?utm_source=share_via&utm_content=profile&utm_medium=member_android))
