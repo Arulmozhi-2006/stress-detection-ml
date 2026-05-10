@@ -16,7 +16,7 @@
 
 ## 📌 What It Does
 
-StressSense AI takes any text input and predicts its stress level in real time:
+StressSense takes any text input and predicts its stress level in real time:
 
 | Output | Meaning |
 |--------|---------|
