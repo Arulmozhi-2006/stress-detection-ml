@@ -253,7 +253,7 @@ def predict_stress(user_text):
 # -------------------------------
 # UI
 # -------------------------------
-st.title("📉 StressSense AI")
+st.title("📉 StressSense")
 st.caption("Analyze stress levels from text using Machine Learning & NLP")
 st.info(
     "⚠️ Note: Model is trained on a limited dataset and may produce imperfect results."
