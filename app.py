@@ -263,11 +263,7 @@ st.info(
     "⚠️ Note: Model is trained on a limited dataset and may produce imperfect results."
 )
 
-col1, col2 = st.columns(2)
-with col1:
-    st.metric("🎯 Training Accuracy", f"{train_acc:.2%}")
-with col2:
-    st.metric("🧪 Testing Accuracy", f"{test_acc:.2%}")
+st.metric("🧪 Testing Accuracy", f"{test_acc:.2%}")
 
 st.divider()
 
