@@ -263,7 +263,7 @@ st.info(
     "⚠️ Note: Model is trained on a limited dataset and may produce imperfect results."
 )
 
-st.metric("🧪 Testing Accuracy", f"{test_acc:.2%}")
+st.metric("Testing Accuracy", f"{test_acc:.2%}")
 
 st.divider()
 
