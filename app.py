@@ -110,7 +110,8 @@ medium_stress_words = [
     "struggle","nervous","tense","uncomfortable","assignment",
     "a lot of work","so much to do","too much","piling up",
     "no time","running out of time","cant sleep","can't sleep",
-    "overwhelmed","behind on","falling behind","under pressure"
+    "overwhelmed","behind on","falling behind","under pressure","slept for", "only slept", "few hours of sleep", 
+"barely slept", "hours of sleep"
 ]
 
 low_stress_words = [
