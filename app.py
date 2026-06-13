@@ -133,9 +133,13 @@ medium_stress_words = [
     "a lot of work","so much to do","too much","piling up",
     "no time","running out of time","cant sleep","can't sleep",
     "overwhelmed","behind on","falling behind","under pressure",
-    "slept for", "only slept", "few hours of sleep",
-    "barely slept", "hours of sleep","barely keep my eyes open", "cant keep my eyes open", 
-"can't keep my eyes open", "eyes are closing","sleepy", "drowsy", "fatigue", "fatigued", "groggy", "sleep deprived","due at the same time", "everything is due", "all due"
+    "slept for", "only slept", "few hours of sleep","barely slept", 
+    "hours of sleep","barely keep my eyes open", "cant keep my eyes open", 
+    "can't keep my eyes open", "eyes are closing","sleepy", "drowsy", "fatigue", 
+    "fatigued", "groggy", "sleep deprived","due at the same time", "everything is due", 
+    "all due","nothing bothers me", "nothing bothers", "doesnt bother me", 
+    "doesn't bother me","nothing gets to me", "nothing fazes me", "nothing worries me", 
+    "doesnt worry me", "doesn't worry me"
 ]
 
 low_stress_words = [
