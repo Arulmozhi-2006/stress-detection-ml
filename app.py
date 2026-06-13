@@ -87,20 +87,42 @@ def is_meaningful_text(text):
     return (known_count / len(words)) >= 0.2
 
 # -------------------------------
+# Negation Handling
+# -------------------------------
+NEGATION_WORDS = {"not", "no", "never", "dont", "don't", "nothing", "without", "cant", "can't", "isnt", "isn't"}
+
+def has_negation_before(text_lower, phrase, window=3):
+    """
+    Checks if a negation word appears within `window` words
+    before the start of `phrase` in text_lower.
+    Handles both single-word and multi-word phrases.
+    """
+    words = text_lower.split()
+    phrase_words = phrase.split()
+    phrase_len = len(phrase_words)
+
+    for i in range(len(words) - phrase_len + 1):
+        if words[i:i + phrase_len] == phrase_words:
+            start = max(0, i - window)
+            if any(w in NEGATION_WORDS for w in words[start:i]):
+                return True
+    return False
+
+# -------------------------------
 # Keyword Lists
 # -------------------------------
 high_stress_words = [
     "panic","terrified","hopeless","unbearable","desperate",
     "breakdown","cannot cope","falling apart","lose my mind",
     "cant breathe","out of control","completely lost","impossible to manage",
-"cannot manage","cant manage","losing control","breaking down","out of control",
-"falling apart","mentally exhausted","cannot handle","cant handle","cannot take this anymore",
-"handle this pressure","cannot deal with","cant deal with","breaking down","losing my mind",
-"too overwhelmed","haven't slept in days",
-"havent slept in days", 
-"piling on work",
-"three deadlines",
-"keep piling",
+    "cannot manage","cant manage","losing control","breaking down","out of control",
+    "falling apart","mentally exhausted","cannot handle","cant handle","cannot take this anymore",
+    "handle this pressure","cannot deal with","cant deal with","breaking down","losing my mind",
+    "too overwhelmed","haven't slept in days",
+    "havent slept in days",
+    "piling on work",
+    "three deadlines",
+    "keep piling",
 ]
 
 medium_stress_words = [
@@ -110,29 +132,57 @@ medium_stress_words = [
     "struggle","nervous","tense","uncomfortable","assignment",
     "a lot of work","so much to do","too much","piling up",
     "no time","running out of time","cant sleep","can't sleep",
-    "overwhelmed","behind on","falling behind","under pressure","slept for", "only slept", "few hours of sleep", 
-"barely slept", "hours of sleep"
+    "overwhelmed","behind on","falling behind","under pressure",
+    "slept for", "only slept", "few hours of sleep",
+    "barely slept", "hours of sleep","barely keep my eyes open", "cant keep my eyes open", 
+"can't keep my eyes open", "eyes are closing","sleepy", "drowsy", "fatigue", "fatigued", "groggy", "sleep deprived","due at the same time", "everything is due", "all due"
 ]
 
 low_stress_words = [
     "happy","joyful","relaxed","calm","peaceful","great",
     "wonderful","excited","love","enjoy","grateful","amazing",
     "fantastic","content","cheerful","delighted","thrilled","going smoothly",
-"under control","stress free","manageable","peaceful day","doing well"
+    "under control","stress free","manageable","peaceful day","doing well"
 ]
 
 def keyword_stress_level(text):
     text_lower = text.lower()
     processed = preprocess(text)
+
+    # --- High stress phrase check (with negation handling) ---
     for phrase in high_stress_words:
         if phrase in text_lower:
+            if has_negation_before(text_lower, phrase):
+                # "not falling apart" etc -> skip, not a high stress signal
+                continue
             return "High"
-    medium_hits = sum(1 for w in medium_stress_words if w in text_lower or w in processed)
+
+    # --- Medium stress check (with negation handling) ---
+    medium_hits = 0
+    negated_medium_hits = 0
+    for w in medium_stress_words:
+        if w in text_lower or w in processed:
+            search_text = text_lower if w in text_lower else processed
+            if has_negation_before(search_text, w):
+                negated_medium_hits += 1
+            else:
+                medium_hits += 1
+
+    # --- Low stress check ---
     low_hits = sum(1 for w in low_stress_words if w in processed)
+
     if medium_hits >= 1:
         return "Medium"
+
     if low_hits >= 1:
         return "Low"
+
+    # If every medium-stress keyword found was negated
+    # (e.g. "not stressed", "don't have any work pending"),
+    # treat the overall sentence as a Low signal
+    if negated_medium_hits >= 1:
+        return "Low"
+
     return None
 
 # -------------------------------
@@ -193,12 +243,12 @@ def prepare_pipeline():
 
     # Bigrams capture phrases like "a lot of work", "too much pressure"
     vectorizer = TfidfVectorizer(
-    max_features=2000,
-    ngram_range=(1,1),
-    min_df=2,
-    max_df=0.95,
-    sublinear_tf=True
-)
+        max_features=2000,
+        ngram_range=(1, 1),
+        min_df=2,
+        max_df=0.95,
+        sublinear_tf=True
+    )
     X = vectorizer.fit_transform(df["text"])
 
     X_train, X_test, y_train, y_test = train_test_split(
@@ -240,7 +290,7 @@ def predict_stress(user_text):
     keyword_result = keyword_stress_level(user_text)
 
     # Allow keyword correction only when confidence is weak
-    if max_confidence < 0.50 and keyword_result is not None:
+    if max_confidence < 0.60 and keyword_result is not None:
 
         # Calm sentence wrongly predicted as stress
         if keyword_result == "Low" and model_result in ["Medium", "High"]:
@@ -249,8 +299,8 @@ def predict_stress(user_text):
         # Severe sentence wrongly predicted as calmer
         elif keyword_result == "High" and model_result in ["Low", "Medium"]:
             return "High", max_confidence
-        elif keyword_result == "Medium" and model_result in ["Low","High"]:
-            return "Medium",max_confidence
+        elif keyword_result == "Medium" and model_result in ["Low", "High"]:
+            return "Medium", max_confidence
 
     # Otherwise trust ML
     return model_result, max_confidence
