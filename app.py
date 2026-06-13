@@ -137,16 +137,17 @@ medium_stress_words = [
     "hours of sleep","barely keep my eyes open", "cant keep my eyes open", 
     "can't keep my eyes open", "eyes are closing","sleepy", "drowsy", "fatigue", 
     "fatigued", "groggy", "sleep deprived","due at the same time", "everything is due", 
-    "all due","nothing bothers me", "nothing bothers", "doesnt bother me", 
-    "doesn't bother me","nothing gets to me", "nothing fazes me", "nothing worries me", 
-    "doesnt worry me", "doesn't worry me"
+    "all due"
 ]
 
 low_stress_words = [
     "happy","joyful","relaxed","calm","peaceful","great",
     "wonderful","excited","love","enjoy","grateful","amazing",
     "fantastic","content","cheerful","delighted","thrilled","going smoothly",
-    "under control","stress free","manageable","peaceful day","doing well"
+    "under control","stress free","manageable","peaceful day","doing well",
+    "nothing bothers me", "nothing bothers", "doesnt bother me", 
+    "doesn't bother me","nothing gets to me", "nothing fazes me", "nothing worries me", 
+    "doesnt worry me", "doesn't worry me"
 ]
 
 def keyword_stress_level(text):
