@@ -145,8 +145,8 @@ low_stress_words = [
     "wonderful","excited","love","enjoy","grateful","amazing",
     "fantastic","content","cheerful","delighted","thrilled","going smoothly",
     "under control","stress free","manageable","peaceful day","doing well",
-    "nothing bothers me", "nothing bothers", "doesnt bother me", 
-    "doesn't bother me","nothing gets to me", "nothing fazes me", "nothing worries me", 
+    "nothing bother me", "nothing bothers", "doesnt bother me", 
+    "doesn't bother me","nothing get to me", "nothing faze me", "nothing worry me", 
     "doesnt worry me", "doesn't worry me"
 ]
 
